@@ -27,7 +27,7 @@ const PositionIcon = (props) => (
 const SearchField: React.FC<{ provinces: String[] }> = ({ provinces }) => {
   return (
     <Flex flex={1} paddingLeft="25px" flexDir="column">
-      <InputGroup maxWidth="1040px">
+      <InputGroup maxWidth="1040px" fontFamily="IBMPlexSansThai">
         <InputLeftAddon
           p="0px"
           children={
@@ -51,7 +51,10 @@ const SearchField: React.FC<{ provinces: String[] }> = ({ provinces }) => {
             </Menu>
           }
         />
-        <Input placeholder="ค้นหา ชื่อ ร้านอาหาร และเครื่องดื่ม ร้านธงฟ้า ร้านค้า OTOP และสินค้าทั่วไป" />
+        <Input
+          fontFamily="IBMPlexSansThai"
+          placeholder="ค้นหา ชื่อ ร้านอาหาร และเครื่องดื่ม ร้านธงฟ้า ร้านค้า OTOP และสินค้าทั่วไป"
+        />
         <InputRightAddon
           width="80px"
           justifyContent="center"
@@ -77,16 +80,22 @@ const SearchBar: React.FC<{ provinces: String[] }> = ({ provinces }) => {
     <Box>
       <Flex w="100%" h="60px" flexDir="row" py="10px" px="10%" flex={1}>
         <Link href="https://search-merchant.คนละครึ่ง.com">
-          <Image src="halfhalf-logo.png" w="auto" h="40px" m="0px" p="0px" />
+          <Image src="/images/halfhalf-logo.png" w="auto" h="40px" m="0px" p="0px" />
         </Link>
         <SearchField provinces={provinces} />
       </Flex>
-      <Flex background="#27397c" h="46px" flexDir="row" color="#fff" px="10%">
+      <Flex background="#27397c" h="46px" flexDir="row" color="#fff" px="10%" alignItems="center">
         <Link href="https://search-merchant.คนละครึ่ง.com">
-          <Text textDecoration="underline">หน้าแรก </Text>
+          <Text fontFamily="IBMPlexSansThai" fontSize="14px" textDecoration="underline">
+            หน้าแรก{" "}
+          </Text>
         </Link>
-        <Text px="10px">/</Text>
-        <Text fontWeight="bold">หน้าแรก </Text>
+        <Text fontFamily="IBMPlexSansThai" fontSize="14px" px="12px">
+          /
+        </Text>
+        <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="bold">
+          ค้นหา{" "}
+        </Text>
       </Flex>
     </Box>
   );

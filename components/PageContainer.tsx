@@ -1,15 +1,25 @@
-import { Box, Flex } from "@chakra-ui/react";
-import React, { ReactText } from "react";
+import { Box, Flex, ResponsiveValue } from "@chakra-ui/react";
+import React from "react";
 
 const PageContainer: React.FC<{
   children?: React.ReactNode;
-  background?: ReactText;
-  isNavbar?: boolean;
-}> = ({ children, background, isNavbar, ...props }) => {
+  background?: ResponsiveValue<any>;
+}> = ({ children, background, ...props }) => {
   return (
-    <Flex flexDir="column" background={background}>
-      {!isNavbar && <Box h={84} />}
-      <Flex alignSelf="center" flex={1} flexDir="column" width={["90%", "1056px"]} {...props}>
+    <Flex
+      flexDir="column"
+      background={background}
+      backgroundPosition="bottom"
+      backgroundRepeat="no-repeat"
+    >
+      <Flex
+        fontFamily="IBMPlexSansThai"
+        alignSelf="center"
+        flex={1}
+        flexDir="column"
+        width={["90%", "98%"]}
+        {...props}
+      >
         {children}
       </Flex>
     </Flex>
