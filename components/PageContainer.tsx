@@ -9,7 +9,9 @@ const PageContainer: React.FC<{
     <Flex
       flexDir="column"
       background={background}
-      backgroundPosition="left center"
+      backgroundPosition="center"
+      backgroundSize="cover"
+      backgroundAttachment="fixed"
       backgroundRepeat="no-repeat"
       paddingBottom="50px"
     >

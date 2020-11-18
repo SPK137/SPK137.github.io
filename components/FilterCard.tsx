@@ -20,15 +20,19 @@ const FilterCard: React.FC<{
   setShopType: (nextValue: ReactText) => void;
   setProvince: (nextValue: ReactText) => void;
   setRange: (nextValue: ReactText) => void;
+  setSubShopType: (nextValue: ReactText) => void;
   shopTypeIndex: number;
   provinceIndex: number;
   priceRangeIndex: number;
+  subShopTypeIndex: number;
   data: ShopDataResponse;
 }> = ({
   setShopType,
+  setSubShopType,
   setProvince,
   setRange,
   shopTypeIndex,
+  subShopTypeIndex,
   provinceIndex,
   priceRangeIndex,
   data,
@@ -38,7 +42,14 @@ const FilterCard: React.FC<{
   const priceList = ["ทั้งหมด", ...data.priceRange];
 
   return (
-    <Flex borderWidth="0.5px" borderColor="rgba(0,0,0,0.65)" background="#fff" w="100%" p="16px">
+    <Flex
+      borderWidth="0.5px"
+      borderColor="rgba(0,0,0,0.65)"
+      background="#fff"
+      w="100%"
+      h="auto"
+      p="16px"
+    >
       <Box>
         <Text fontFamily="IBMPlexSansThai" fontSize="16px" fontWeight="600" paddingBottom="20px">
           ประเภทร้านค้า
@@ -147,8 +158,8 @@ const FilterCard: React.FC<{
         </Text>
         <RadioGroup
           display={shopTypeIndex > 0 ? "inherit" : "none"}
-          onChange={setShopType}
-          value={shopTypeIndex}
+          onChange={setSubShopType}
+          value={subShopTypeIndex}
           defaultValue="0"
           paddingBottom="40px"
         >
