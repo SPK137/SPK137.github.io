@@ -6,38 +6,16 @@ import FilterCard from "../components/FilterCard";
 import { PageContainer } from "../components/PageContainer";
 import SearchBar from "../components/SearchBar";
 import ShopCard from "../components/ShopCard";
-
-export interface ShopCategory {
-  name: string;
-  subcategories: string[];
-}
-
-export interface Merchant {
-  shopNameTH: string;
-  categoryName: string;
-  subcategoryName: string;
-  coverImageId: string;
-  facilities: string[];
-  priceLevel: number;
-  isOpen: string;
-  highlightText: string;
-  recommendedItems: string[];
-  addressProvinceName: string;
-  addressDistrictName: string;
-}
-
-export interface ShopDataResponse {
-  categories: ShopCategory[];
-  provinces: string[];
-  priceRanges: string[];
-  merchants: Merchant[];
-}
+import { ShopDataResponse } from "../utils/types";
 
 const SearchPage: React.FC<{
   data: ShopDataResponse;
 }> = ({ data }) => {
-  const [filter, setFilter] = useState<string>("");
-  const [shopType, setShopType] = useState<number>(0);
+  const [shopTypeIndex, setShopTypeIndex] = useState<number>(0);
+  const [selectedProvinceIndex, setSelectedProvinceIndex] = useState<number>(0);
+  const [priceRangeIndex, setPriceRangeIndex] = useState<number>(0);
+  const shopTypeList = ["ทั้งหมด", ...data.categories.map((category) => category.name)];
+  const provinceList = ["พื้นที่ใกล้ฉัน", "พื้นที่ทั้งหมด", ...data.provinces];
 
   return (
     <Flex flexDir="column">
@@ -45,7 +23,7 @@ const SearchPage: React.FC<{
         <title>โครงการคนละครึ่ง</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SearchBar provinces={data.provinces} />
+      <SearchBar provinces={provinceList} selectedProvinceIndex={selectedProvinceIndex} />
       <PageContainer background="url('/images/result-bg.png')">
         <Text
           paddingTop="20px"
@@ -55,15 +33,24 @@ const SearchPage: React.FC<{
           fontWeight="700"
         >
           {" "}
-          ผลการค้นหา {filter} ทั้งหมด
+          ผลการค้นหา {shopTypeIndex > 0 ? shopTypeList[shopTypeIndex] : ""} ทั้งหมด
         </Text>
         <Flex flexDir="row">
           <Flex flex={1}>
             <FilterCard
-              onChange={(nextValue) => {
-                setShopType(nextValue as number);
+              data={data}
+              setShopType={(nextValue) => {
+                setShopTypeIndex(nextValue as number);
               }}
-              shopTypeIndex={shopType}
+              setProvince={(nextValue) => {
+                setSelectedProvinceIndex(nextValue as number);
+              }}
+              setRange={(nextValue) => {
+                setPriceRangeIndex(nextValue as number);
+              }}
+              shopTypeIndex={shopTypeIndex}
+              provinceIndex={selectedProvinceIndex}
+              priceRangeIndex={priceRangeIndex}
             />
           </Flex>
           <Flex flex={3.3}>

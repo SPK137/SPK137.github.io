@@ -9,8 +9,9 @@ const PageContainer: React.FC<{
     <Flex
       flexDir="column"
       background={background}
-      backgroundPosition="bottom"
+      backgroundPosition="left center"
       backgroundRepeat="no-repeat"
+      paddingBottom="50px"
     >
       <Flex
         fontFamily="IBMPlexSansThai"

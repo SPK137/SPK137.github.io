@@ -1,10 +1,10 @@
-import { Flex, Spinner, Text } from "@chakra-ui/react";
+import { CircularProgress, Flex } from "@chakra-ui/react";
 import React from "react";
 
 const ShopCard: React.FC = ({ ...props }) => {
   return (
-    <Flex border="1 solid #e2e8f0">
-      <Spinner />
+    <Flex w="100%" justifyContent="center" alignItems="center">
+      <CircularProgress isIndeterminate trackColor="blue.200" size="80px" />
     </Flex>
   );
 };
