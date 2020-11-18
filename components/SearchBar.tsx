@@ -49,9 +49,10 @@ const SearchField: React.FC<{ provinces: string[]; selectedProvinceIndex: number
   selectedProvinceIndex,
 }) => {
   return (
-    <Flex flex={1} paddingLeft="30px" flexDir="column">
-      <InputGroup maxWidth="1040px" fontFamily="IBMPlexSansThai">
+    <Flex flex={1} flexDir="column" maxWidth={["100%", "1040px"]}>
+      <InputGroup fontFamily="IBMPlexSansThai">
         <InputLeftAddon
+          display={["none", "inherit", "inherit"]}
           p="0px"
           minW="190px !important"
           children={
@@ -79,7 +80,7 @@ const SearchField: React.FC<{ provinces: string[]; selectedProvinceIndex: number
                 fontSize="14px"
               >
                 {provinces.map((province) => (
-                  <MenuItem maxW="80px">
+                  <MenuItem maxW="80px" key={`searchBar-${province}`}>
                     {getIcon(province)} {province}
                   </MenuItem>
                 ))}
@@ -120,15 +121,45 @@ const SearchBar: React.FC<{ provinces: string[]; selectedProvinceIndex: number }
 }) => {
   return (
     <Box>
-      <Flex w="100%" h="60px" flexDir="row" py="10px" px="10%" flex={1}>
+      <Flex w="100%" h="60px" flexDir="row" py="10px" px={["4%", "10%"]} flex={1}>
         <Link href="https://search-merchant.คนละครึ่ง.com">
-          <Image src="/images/halfhalf-logo.png" w="auto" h="40px" m="0px" p="0px" />
+          <Image
+            src="/images/halfhalf-logo.png"
+            w="auto"
+            h="40px"
+            m="0px"
+            p="0px"
+            marginRight="30px"
+            display={["none", "flex", "flex"]}
+          />
+        </Link>
+        <Link href="https://search-merchant.คนละครึ่ง.com">
+          <Image
+            src="/images/halfhalf-logo-mini.png"
+            w="auto"
+            h="40px"
+            m="0px"
+            p="0px"
+            marginRight="16px"
+            display={["flex", "none", "none"]}
+          />
         </Link>
         <SearchField provinces={provinces} selectedProvinceIndex={selectedProvinceIndex} />
+        <Button background="transparent" p="0px" display={["inherit", "none", "none"]}>
+          <Image src="/images/filter.png" w="19px" h="19px" />
+        </Button>
       </Flex>
-      <Flex background="#27397c" h="46px" flexDir="row" color="#fff" px="10%" alignItems="center">
+      <Flex
+        background="#27397c"
+        h="46px"
+        flexDir="row"
+        color="#fff"
+        px="10%"
+        alignItems="center"
+        w="100vw"
+      >
         <Link href="https://search-merchant.คนละครึ่ง.com">
-          <Text fontFamily="IBMPlexSansThai" fontSize="14px" textDecoration="underline">
+          <Text as="button" fontFamily="IBMPlexSansThai" fontSize="14px" textDecoration="underline">
             หน้าแรก{" "}
           </Text>
         </Link>

@@ -66,99 +66,105 @@ const ShopCard: React.FC<{ merchantData: Merchant }> = ({ merchantData, ...props
   const parsedHighlightText = parse(merchantData.highlightText);
 
   return (
-    <>
-      {!isLoading ? (
-        <Flex w="100%" marginBottom="10px" p="5px" h="240px" bg="#fff" justifyContent="start">
-          <Image src={merchantData.coverImageId} objectFit="cover" h="100%" w="22%" />
-          <Flex flexDir="column" w="100%" px="20px">
-            <Flex alignItems="center" minH="40px" paddingTop="14px">
-              <Text
-                fontFamily="IBMPlexSansThai"
-                fontSize="20px"
-                fontWeight="700"
-                marginRight="10px"
-              >
-                {merchantData.shopNameTH}
-              </Text>
-              <ShopTag shopOpen={merchantData.isOpen === "Y"} />
-            </Flex>
-            <Flex marginTop="5px">
-              <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="400" color="gray.400">
-                {merchantData.subcategoryName}
-              </Text>
-              <Text
-                fontFamily="IBMPlexSansThai"
-                fontSize="14px"
-                fontWeight="400"
-                color="gray.400"
-                px="10px"
-              >
-                |
-              </Text>
-              <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="400" color="gray.400">
-                {`฿฿฿฿`}
-              </Text>
-              <Text
-                fontFamily="IBMPlexSansThai"
-                fontSize="14px"
-                fontWeight="400"
-                color="gray.400"
-                px="10px"
-              >
-                |
-              </Text>
-              <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="400" color="gray.400">
-                {`${merchantData.addressDistrictName} ${merchantData.addressProvinceName}`}
-              </Text>
-            </Flex>
-            <Divider my="16px" />
-            <Text
-              fontFamily="IBMPlexSansThai"
-              fontSize="14px"
-              fontWeight="400"
-              color="gray.400"
-              paddingBottom="5px"
-            >
-              {parsedHighlightText}
-            </Text>
-            <Flex>
-              <Text
-                fontFamily="IBMPlexSansThai"
-                fontSize="14px"
-                fontWeight="600"
-                paddingRight="5px"
-              >{`สินค้าแนะนำ: `}</Text>
-              <Text
-                fontFamily="IBMPlexSansThai"
-                fontSize="14px"
-                fontWeight="400"
-                color="gray.400"
-                flexDir="row"
-              >
-                {merchantData.recommendedItems.map(
-                  (item, index) =>
-                    ` ${item}${index + 1 === merchantData.recommendedItems.length ? "" : ","} `
-                )}
-              </Text>
-            </Flex>
-            <Flex w="100%" alignItems="center" flex={1} paddingBottom="15px">
-              {merchantData.facilities.includes("ที่จอดรถ") && <FacilityIcon name="ที่จอดรถ" />}
-              {merchantData.facilities.includes("รับจองล่วงหน้า") && (
-                <FacilityIcon name="รับจองล่วงหน้า" />
-              )}
-              {merchantData.facilities.includes("สามารถนำสัตว์เลี้ยงเข้าได้") && (
-                <FacilityIcon name="สามารถนำสัตว์เลี้ยงเข้าได้" />
-              )}
-            </Flex>
-          </Flex>
+    <Flex
+      flexDir={["column", "column", "row"]}
+      w="100%"
+      marginBottom="10px"
+      p="5px"
+      minH={["400px", "224px"]}
+      bg="#fff"
+      justifyContent="start"
+    >
+      <Image
+        src={merchantData.coverImageId}
+        objectFit="cover"
+        minH="100%"
+        maxH="224px"
+        minW="240px"
+        w={["100%", "100%", "240px"]}
+      />
+      <Flex flexDir="column" w="100%" px="20px">
+        <Flex alignItems="center" minH="40px" paddingTop="14px">
+          <Text fontFamily="IBMPlexSansThai" fontSize="20px" fontWeight="700" marginRight="10px">
+            {merchantData.shopNameTH}
+          </Text>
+          <ShopTag shopOpen={merchantData.isOpen === "Y"} />
         </Flex>
-      ) : (
-        <Flex w="100%" justifyContent="center" alignItems="center">
-          <CircularProgress isIndeterminate trackColor="blue.200" size="80px" />
+        <Flex marginTop="5px" flexWrap="wrap">
+          <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="400" color="gray.400">
+            {merchantData.subcategoryName}
+          </Text>
+          <Text
+            fontFamily="IBMPlexSansThai"
+            fontSize="14px"
+            fontWeight="400"
+            color="gray.400"
+            px="10px"
+          >
+            |
+          </Text>
+          <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="400" color="gray.400">
+            {`฿฿฿฿`}
+          </Text>
+          <Text
+            fontFamily="IBMPlexSansThai"
+            fontSize="14px"
+            fontWeight="400"
+            color="gray.400"
+            px="10px"
+          >
+            |
+          </Text>
+          <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="400" color="gray.400">
+            {`${merchantData.addressDistrictName} ${merchantData.addressProvinceName}`}
+          </Text>
         </Flex>
-      )}
-    </>
+        <Divider my="16px" />
+        <Text
+          fontFamily="IBMPlexSansThai"
+          fontSize="14px"
+          fontWeight="400"
+          color="gray.400"
+          paddingBottom="5px"
+        >
+          {parsedHighlightText}
+        </Text>
+        <Flex paddingBottom={["15px", "0px"]} flexWrap="wrap">
+          <Text
+            fontFamily="IBMPlexSansThai"
+            fontSize="14px"
+            fontWeight="600"
+            paddingRight="5px"
+          >{`สินค้าแนะนำ: `}</Text>
+          <Text
+            fontFamily="IBMPlexSansThai"
+            fontSize="14px"
+            fontWeight="400"
+            color="gray.400"
+            flexDir="row"
+          >
+            {merchantData.recommendedItems.map(
+              (item, index) =>
+                ` ${item}${index + 1 === merchantData.recommendedItems.length ? "" : ","} `
+            )}
+          </Text>
+        </Flex>
+        <Flex w="100%" alignItems="center" flex={1} paddingBottom="15px">
+          {merchantData.facilities.includes("ที่จอดรถ") && <FacilityIcon name="ที่จอดรถ" />}
+          {merchantData.facilities.includes("รับจองล่วงหน้า") && (
+            <FacilityIcon name="รับจองล่วงหน้า" />
+          )}
+          {merchantData.facilities.includes("สามารถนำสัตว์เลี้ยงเข้าได้") && (
+            <FacilityIcon name="สามารถนำสัตว์เลี้ยงเข้าได้" />
+          )}
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 
 export default ShopCard;
+
+/* <Flex w="100%" justifyContent="center" alignItems="center">
+          <CircularProgress isIndeterminate trackColor="blue.200" size="80px" />
+        </Flex> */

@@ -46,7 +46,7 @@ const FilterCard: React.FC<{
       borderWidth="0.5px"
       borderColor="rgba(0,0,0,0.65)"
       background="#fff"
-      w="100%"
+      minW="350px"
       h="auto"
       p="16px"
     >
@@ -67,7 +67,7 @@ const FilterCard: React.FC<{
               </Text>
             </Radio>
             {data.categories.map((category, index) => (
-              <Radio value={`${index + 1}`}>
+              <Radio value={`${index + 1}`} key={category.name}>
                 <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="400">
                   {category.name}
                 </Text>
@@ -97,6 +97,7 @@ const FilterCard: React.FC<{
           <MenuList borderRadius="0px" w="100%" overflowY="scroll" maxH="280px" fontSize="14px">
             {provinceList.map((province, index) => (
               <MenuItem
+                key={province}
                 onClick={() => {
                   setProvince(index);
                 }}
@@ -116,6 +117,11 @@ const FilterCard: React.FC<{
           >
             ช่วงราคาสินค้า (บาท)
           </Text>
+        </Box>
+        <Box display={shopTypeIndex == 1 ? "inherit" : "none"}>
+          <Text fontFamily="IBMPlexSansThai" fontSize="16px" fontWeight="600" paddingBottom="5px">
+            ราคา
+          </Text>
           <Menu>
             <MenuButton
               background="#fff"
@@ -134,6 +140,7 @@ const FilterCard: React.FC<{
             <MenuList borderRadius="0px" w="100%" overflowY="scroll" maxH="280px" fontSize="14px">
               {priceList.map((price, index) => (
                 <MenuItem
+                  key={price}
                   onClick={() => {
                     setRange(index);
                   }}
@@ -144,15 +151,6 @@ const FilterCard: React.FC<{
             </MenuList>
           </Menu>
         </Box>
-        <Text
-          display={shopTypeIndex == 1 ? "inherit" : "none"}
-          fontFamily="IBMPlexSansThai"
-          fontSize="16px"
-          fontWeight="600"
-          paddingBottom="5px"
-        >
-          ราคา
-        </Text>
         <Text fontFamily="IBMPlexSansThai" fontSize="16px" fontWeight="600" paddingBottom="5px">
           {shopTypeIndex > 0 ? `ประเภท${data.categories[shopTypeIndex - 1]?.name}` : ""}
         </Text>
@@ -170,7 +168,7 @@ const FilterCard: React.FC<{
               </Text>
             </Radio>
             {data.categories[shopTypeIndex - 1]?.subcategories.map((subcategory, index) => (
-              <Radio value={`${index + 1}`}>
+              <Radio value={`${index + 1}`} key={subcategory}>
                 <Text fontFamily="IBMPlexSansThai" fontSize="14px" fontWeight="400">
                   {subcategory}
                 </Text>

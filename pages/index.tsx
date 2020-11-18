@@ -57,7 +57,12 @@ const SearchPage: React.FC<{
           ผลการค้นหา {shopTypeIndex > 0 ? shopTypeList[shopTypeIndex] : ""} ทั้งหมด
         </Text>
         <Flex flexDir="row">
-          <Flex flex={1} flexDir="column">
+          <Flex
+            flex={1}
+            flexDir="column"
+            paddingRight="30px"
+            display={["none", "inherit", "inherit"]}
+          >
             <FilterCard
               data={data}
               setShopType={(nextValue) => {
@@ -78,9 +83,9 @@ const SearchPage: React.FC<{
               priceRangeIndex={priceRangeIndex}
             />
           </Flex>
-          <Flex flex={3.1} paddingLeft="30px" paddingRight="10px" flexDir="column">
+          <Flex flex={3.1} paddingRight={["0px", "10px"]} flexDir="column">
             {filteredMerchantList.map((merchant) => (
-              <ShopCard merchantData={merchant} />
+              <ShopCard merchantData={merchant} key={merchant.shopNameTH} />
             ))}
           </Flex>
         </Flex>
