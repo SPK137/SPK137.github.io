@@ -1,20 +1,13 @@
 import { Flex, Image } from "@chakra-ui/react";
 import React from "react";
-import bg from "../assets/images/result-bg.png";
+import "../index.css";
+import bg from "./result-bg.png";
 
 const PageContainer: React.FC<{
   children?: React.ReactNode;
 }> = ({ children, ...props }) => {
   return (
-    <Flex
-      flexDir="column"
-      background={bg}
-      backgroundPosition="center"
-      backgroundSize="cover"
-      backgroundAttachment="fixed"
-      backgroundRepeat="no-repeat"
-      paddingBottom="50px"
-    >
+    <div className="bg">
       <Flex
         fontFamily="IBMPlexSansThai"
         alignSelf="center"
@@ -25,7 +18,7 @@ const PageContainer: React.FC<{
       >
         {children}
       </Flex>
-    </Flex>
+    </div>
   );
 };
 

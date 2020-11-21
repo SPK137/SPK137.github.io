@@ -17,3 +17,15 @@ code {
   font-weight: 400;
   font-display: swap;
 }
+
+.bg {
+  display: flex;
+  flex-direction: column;
+  background-image: url(./assets/images/result-bg.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: "50px";
+  min-height: 100vh;
+}
