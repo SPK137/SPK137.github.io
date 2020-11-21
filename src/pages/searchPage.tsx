@@ -24,7 +24,7 @@ const SearchPage: React.FC = () => {
   const [selectedProvinceIndex, setSelectedProvinceIndex] = useState<number>(0);
   const [priceRangeIndex, setPriceRangeIndex] = useState<number>(0);
   const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(600);
   const [keyword, setKeyword] = useState<string>("");
   const [filteredMerchantList, setMerchantList] = useState<Merchant[]>([]);
   const [data, setData] = useState<ShopDataResponse>({
@@ -74,19 +74,20 @@ const SearchPage: React.FC = () => {
       merchantList = merchantList.filter((merchant) => merchant.priceLevel == priceRangeIndex);
     }
     if (shopTypeIndex != 1) {
+      console.log("filter price");
       if (maxPrice >= 600)
         merchantList = merchantList.filter((merchant) => merchant.priceLevel <= 4);
-      if (maxPrice >= 300)
+      else if (maxPrice >= 300)
         merchantList = merchantList.filter((merchant) => merchant.priceLevel <= 3);
-      if (maxPrice >= 100)
+      else if (maxPrice >= 100)
         merchantList = merchantList.filter((merchant) => merchant.priceLevel <= 2);
       else merchantList = merchantList.filter((merchant) => merchant.priceLevel <= 1);
 
       if (minPrice >= 600)
         merchantList = merchantList.filter((merchant) => merchant.priceLevel >= 4);
-      if (minPrice >= 300)
+      else if (minPrice >= 300)
         merchantList = merchantList.filter((merchant) => merchant.priceLevel >= 3);
-      if (minPrice >= 100)
+      else if (minPrice >= 100)
         merchantList = merchantList.filter((merchant) => merchant.priceLevel >= 2);
       else merchantList = merchantList.filter((merchant) => merchant.priceLevel >= 1);
     }
